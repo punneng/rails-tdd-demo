@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ModelTypesController, type: :controller do
-  descript '#GET /models/:model_slug/model_types' do
+  describe '#GET /models/:model_slug/model_types' do
     def get_model_types
       get :index, { model_slug: 'serie_1' }
     end
