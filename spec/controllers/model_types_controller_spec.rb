@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ModelTypesController, type: :controller do
   describe '#GET /models/:model_slug/model_types' do
     def get_model_types
-      get :index, { model_slug: 'serie_1' }
+      get :show, { model_slug: 'serie_1' }
     end
 
     before :each do

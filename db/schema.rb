@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170113185148) do
     t.string   "model_type_slug"
     t.string   "model_type_code"
     t.decimal  "base_price"
+    t.integer  "model_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -25,14 +26,16 @@ ActiveRecord::Schema.define(version: 20170113185148) do
   create_table "models", force: :cascade do |t|
     t.string   "name"
     t.string   "model_slug"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.string   "public_name"
     t.string   "pricing_policy"
+    t.string   "type"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
