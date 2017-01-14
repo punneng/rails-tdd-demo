@@ -2,7 +2,7 @@ FactoryGirl.define do
   # :name, :public_name, :type, :pricing_policy
 
   factory :show_room, class: Organization do
-    type 'Show room'
+    organization_type 'Show room'
   end
 
   factory :flexible_organization, parent: :show_room do

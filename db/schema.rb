@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 20170113185148) do
     t.string   "name"
     t.string   "public_name"
     t.string   "pricing_policy"
-    t.string   "type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "organization_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
 end
