@@ -35,5 +35,10 @@ RSpec.describe PricingPolicy::FixedPrice do
   end
 
   # instance variables
-  describe :total_price
+  describe :total_price do
+    subject { pricing_policy.total_price }
+    it 'should calculate by base_price + margin' do
+      expect(subject).to eq(103)
+    end
+  end
 end

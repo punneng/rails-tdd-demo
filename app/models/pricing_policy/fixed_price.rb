@@ -10,6 +10,7 @@ class PricingPolicy::FixedPrice
 
   def initialize(base_price)
     @margin = get_margin
+    @total_price = @margin + base_price
   end
 
   private
