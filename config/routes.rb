@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
-  resources :models do
-    resources :model_types, only: [:index] do
-      member do
-        post :model_types_price
-      end
-    end
-  end
 
+  get  '/models/:model_slug/model_types', to: 'model_types#index', as: 'model_types'
+  post '/models/:model_slug/model_types_price/:model_type_slug', to: 'model_types#price', as: 'model_types_price'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

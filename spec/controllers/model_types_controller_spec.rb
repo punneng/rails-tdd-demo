@@ -8,7 +8,7 @@ RSpec.describe ModelTypesController, type: :controller do
     let!(:model_types_2) { model.model_types[1] }
 
     def get_model_types
-      get :index, { model_id: 'serie_1' }
+      get :index, { model_slug: 'serie_1' }
     end
 
     before :each do
@@ -45,7 +45,7 @@ RSpec.describe ModelTypesController, type: :controller do
 
   describe '#POST model_types_price' do
     def post_model_types_price
-      post :model_types_price, { model_id: 'serie_2', id: 'bmw_216i' }
+      post :price, { model_slug: 'serie_2', model_type_slug: 'bmw_216i' }
     end
 
     it 'should render as json' do
