@@ -5,4 +5,11 @@ class ModelType < ActiveRecord::Base
   validates :model_type_slug, presence: true, uniqueness: true
   validates :model_type_code, presence: true, uniqueness: true
   validates :base_price, presence: true, numericality: true
+
+  def total_price
+    case model.organization.pricing_policy
+    when 'flexible'
+      PricingPolicy::FlexiblePrice.new(base_price).total_price
+    end
+  end
 end
