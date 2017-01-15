@@ -23,6 +23,11 @@ RSpec.describe ModelTypesController, type: :controller do
       expect(model['name']).to eq('serie 1')
     end
 
-    it 'should contain model types'
+    it 'should contain model type with model type name' do
+      model_type_1 = res['models'][0]['model_types'][0]
+      model_type_2 = res['models'][0]['model_types'][1]
+      expect(model_type_1['name']).to eq('bmw 116i')
+      expect(model_type_2['name']).to eq('bmw 125i')
+    end
   end
 end
