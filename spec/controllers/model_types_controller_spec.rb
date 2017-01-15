@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe ModelTypesController, type: :controller do
-  describe '#GET /models/:model_slug/model_types' do
+  describe '#GET index' do
     def get_model_types
-      get :show, { model_slug: 'serie_1' }
+      get :index, { model_id: 'serie_1' }
     end
 
     before :each do
@@ -14,12 +14,7 @@ RSpec.describe ModelTypesController, type: :controller do
       response.header['Content-Type'].should include 'application/json'
     end
 
-    it 'should contain model names' do
-
-    end
-
-    it 'should contain model types' do
-
-    end
+    it 'should contain model names'
+    it 'should contain model types'
   end
 end
