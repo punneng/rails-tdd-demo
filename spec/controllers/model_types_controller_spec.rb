@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ModelTypesController, type: :controller do
   describe '#GET index' do
+    let!(:model) { create(:serie_1) }
+    let(:res) { JSON.parse(@response.body) }
+
     def get_model_types
       get :index, { model_id: 'serie_1' }
     end
@@ -11,10 +14,15 @@ RSpec.describe ModelTypesController, type: :controller do
     end
 
     it 'should render as json' do
-      response.header['Content-Type'].should include 'application/json'
+      expect(response.header['Content-Type']).to include('application/json')
     end
 
-    it 'should contain model names'
+    it 'should contain model names' do
+      model = res['models'][0]
+      expect(model.has_key?('name')).to be(true)
+      expect(model['name']).to eq('serie 1')
+    end
+
     it 'should contain model types'
   end
 end
