@@ -13,7 +13,10 @@ class ModelSerializer < ActiveModel::Serializer
 
   def render_model_types
     self.object.model_types.map do |model_type|
-      ModelTypeSerializer.new(model_type)
+      {
+        name: model_type.name,
+        total_price: model_type.total_price
+      }
     end
   end
 end
