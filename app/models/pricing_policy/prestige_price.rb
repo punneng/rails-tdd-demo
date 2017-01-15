@@ -1,4 +1,3 @@
-require 'net/http'
 require 'nokogiri'
 
 class PricingPolicy::PrestigePrice
@@ -9,22 +8,23 @@ class PricingPolicy::PrestigePrice
   @@base_uri = 'http://www.yourlocalguardian.co.uk/sport/rugby/rss/'
 
   def initialize(base_price)
-    get_margin
+    @margin = get_margin
+    @total_price = @margin + base_price
   end
 
   private
   # TODO: move fetch to a super class
   def fetch
     response = HTTParty.get(@@base_uri)
-    document = Nokogiri::HTML(response)
-    clean_tags(document)
+    re_format(response)
   end
 
-  def clean_tags(document)
-    document
+  def re_format(response)
+    document = Nokogiri::XML(response)
+    document.css('pubDate')
   end
 
   def get_margin
-    fetch
+    fetch.count
   end
 end
