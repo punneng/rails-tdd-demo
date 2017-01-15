@@ -9,7 +9,7 @@ class PricingPolicy::FixedPrice
   @@base_uri = 'https://developer.github.com/v3/#http-redirects'
 
   def initialize(base_price)
-    get_margin
+    @margin = get_margin
   end
 
   private

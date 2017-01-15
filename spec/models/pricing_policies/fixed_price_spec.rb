@@ -28,6 +28,10 @@ RSpec.describe PricingPolicy::FixedPrice do
       expect(http_body_tokens).to receive(:count).with('Status').and_return(2)
       subject
     end
+
+    it 'should return occurence of `status`' do
+      expect(subject.margin).to eq(3)
+    end
   end
 
   # instance variables
