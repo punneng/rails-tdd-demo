@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# TODO: use webmock
 http_body = %Q(
 <strong>Status</strong> status <pre>Status</pre>
 )
@@ -16,7 +17,7 @@ RSpec.describe PricingPolicy::FixedPrice do
   describe '.new' do
     subject { pricing_policy }
 
-    it 'should fetch the html body from reuters.com' do
+    it 'should fetch the html body from developer.github.com' do
       expect(HTTParty).to receive(:get).with('https://developer.github.com/v3/#http-redirects')
       subject
     end

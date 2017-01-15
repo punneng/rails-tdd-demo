@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# TODO: use webmock
 readable_http_body = %q(
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lectus est,
   gravida a nibh non, tincidunt sodales nibh. Proin nibh massa, porta quis egestas at,

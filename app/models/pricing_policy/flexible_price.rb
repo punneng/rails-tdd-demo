@@ -14,6 +14,7 @@ class PricingPolicy::FlexiblePrice
   end
 
   private
+  # TODO: move fetch to a super class
   def fetch
     response = HTTParty.get(@@base_uri)
     document = Nokogiri::HTML(response)
