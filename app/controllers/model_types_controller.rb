@@ -1,10 +1,18 @@
 class ModelTypesController < ApplicationController
+  before_action :load_model
   def index
-    @model = Model.find_by(model_slug: params[:model_slug])
     render json: @model
   end
 
   def price
-    render json: {}
+    model_type = @model.model_types.find_by(model_type_slug: params[:model_type_slug])
+    model_type.base_price = params[:total_price].to_i
+
+    render json: model_type
+  end
+
+  private
+  def load_model
+    @model = Model.find_by(model_slug: params[:model_slug])
   end
 end

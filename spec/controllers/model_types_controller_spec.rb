@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ModelTypesController, type: :controller do
+  let(:res) { JSON.parse(@response.body) }
+
   describe '#GET index' do
     let!(:model) { create(:serie_1) }
-    let(:res) { JSON.parse(@response.body) }
     let!(:model_types_1) { model.model_types[0] }
     let!(:model_types_2) { model.model_types[1] }
 
@@ -11,7 +12,7 @@ RSpec.describe ModelTypesController, type: :controller do
       get :index, { model_slug: 'serie_1' }
     end
 
-    before :each do
+    before do
       allow(model_types_1).to receive(:total_price).and_return(23)
       allow(model_types_2).to receive(:total_price).and_return(46)
       allow(Model).to receive(:find_by).and_return(model)
@@ -44,13 +45,24 @@ RSpec.describe ModelTypesController, type: :controller do
   end
 
   describe '#POST model_types_price' do
-    def post_model_types_price
-      post :price, { model_slug: 'serie_2', model_type_slug: 'bmw_216i' }
+    let!(:model) { create(:serie_2) }
+
+    def post_price
+      post :price, { model_slug: 'serie_2', model_type_slug: 'bmw_216i', base_price: 100 }
+    end
+
+    before do
+      allow(Model).to receive(:find_by).and_return(model)
+      post_price
     end
 
     it 'should render as json' do
-      post_model_types_price
       expect(response.header['Content-Type']).to include('application/json')
+    end
+
+    it 'should contain model types with model type name' do
+      model_type_1 = res['model_type']
+      expect(model_type_1['name']).to eq('bmw 216i')
     end
   end
 end
