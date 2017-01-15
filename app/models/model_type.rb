@@ -10,6 +10,8 @@ class ModelType < ActiveRecord::Base
     case model.organization.pricing_policy
     when 'flexible'
       PricingPolicy::FlexiblePrice.new(base_price).total_price
+    when 'fixed'
+      PricingPolicy::FixedPrice.new(base_price).total_price
     end
   end
 end

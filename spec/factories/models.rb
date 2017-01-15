@@ -11,7 +11,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :serie_2 do
+  factory :serie_2, class: Model do
     name 'serie 2'
     model_slug 'serie_2'
     association :organization, factory: :fixed_organization
@@ -22,7 +22,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :serie_3 do
+  factory :serie_3, class: Model do
     name 'serie 3'
     model_slug 'serie_3'
     association :organization, factory: :prestige_organization
