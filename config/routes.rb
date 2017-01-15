@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :models do
-    resources :model_types, only: [:index]
+    resources :model_types, only: [:index] do
+      member do
+        post :model_types_price
+      end
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

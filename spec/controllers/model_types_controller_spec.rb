@@ -42,4 +42,15 @@ RSpec.describe ModelTypesController, type: :controller do
       expect(model_type_2['total_price']).to eq(46)
     end
   end
+
+  describe '#POST model_types_price' do
+    def post_model_types_price
+      post :model_types_price, { model_id: 'serie_2', id: 'bmw_216i' }
+    end
+
+    it 'should render as json' do
+      post_model_types_price
+      expect(response.header['Content-Type']).to include('application/json')
+    end
+  end
 end
