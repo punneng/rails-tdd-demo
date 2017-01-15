@@ -3,11 +3,13 @@ require 'nokogiri'
 
 class PricingPolicy::FixedPrice
 
+  attr_reader :margin
+
   @@base_uri = 'http://www.reuters.com/'
 
   def initialize(base_price)
     @base_price = base_price
-    @margin = fetch.count('a')
+    @margin = fetch.count('a') / 100.00
   end
 
   private

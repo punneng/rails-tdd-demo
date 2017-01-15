@@ -26,10 +26,12 @@ RSpec.describe PricingPolicy::FixedPrice do
 
     it 'should count only `a` from the html body' do
       allow_any_instance_of(PricingPolicy::FixedPrice).to receive(:fetch).and_return(readable_http_body)
-      expect(readable_http_body).to receive(:count).with('a')
+      expect(readable_http_body).to receive(:count).with('a').and_return(23)
       subject
     end
 
-    it 'should return occurence of `a` divided by 100'
+    it 'should return occurence of `a` divided by 100' do
+      expect(subject.margin).to eq(23/100.00)
+    end
   end
 end
