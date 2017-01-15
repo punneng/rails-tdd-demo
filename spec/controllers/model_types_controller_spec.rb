@@ -46,6 +46,7 @@ RSpec.describe ModelTypesController, type: :controller do
 
   describe '#POST model_types_price' do
     let!(:model) { create(:serie_2) }
+    let!(:model_types_1) { model.model_types[0] }
 
     def post_price
       post :price, { model_slug: 'serie_2', model_type_slug: 'bmw_216i', base_price: 100 }
@@ -53,6 +54,8 @@ RSpec.describe ModelTypesController, type: :controller do
 
     before do
       allow(Model).to receive(:find_by).and_return(model)
+      allow(model.model_types).to receive(:find_by).and_return(model_types_1)
+      allow(model_types_1).to receive(:total_price).and_return(23)
       post_price
     end
 
@@ -63,6 +66,11 @@ RSpec.describe ModelTypesController, type: :controller do
     it 'should contain model types with model type name' do
       model_type_1 = res['model_type']
       expect(model_type_1['name']).to eq('bmw 216i')
+    end
+
+    it 'should contain model types with model type total_price' do
+      model_type_1 = res['model_type']
+      expect(model_type_1['total_price']).to eq(23)
     end
   end
 end
