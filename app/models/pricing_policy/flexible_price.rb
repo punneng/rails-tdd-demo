@@ -1,7 +1,7 @@
 require 'net/http'
 require 'nokogiri'
 
-class PricingPolicy::FixedPrice
+class PricingPolicy::FlexiblePrice
 
   # NOTE: allowing margin in attr_reader for testing
   attr_reader :margin, :total_price
