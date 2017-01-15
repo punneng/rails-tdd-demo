@@ -43,6 +43,8 @@ gem 'ransack', '1.7.0'
 # http request library
 gem 'httparty', '>= 0.13.7'
 
+gem 'nokogiri'
+
 # =======================
 # AUTH & SOCIAL LOGINS
 # =======================

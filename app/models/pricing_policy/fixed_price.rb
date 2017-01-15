@@ -1,4 +1,5 @@
 require 'net/http'
+require 'nokogiri'
 
 class PricingPolicy::FixedPrice
 
@@ -6,9 +7,14 @@ class PricingPolicy::FixedPrice
 
   def initialize(base_price)
     @base_price = base_price
+    @margin = fetch.count('a')
   end
 
-  def margin
+  private
+  def fetch
     response = HTTParty.get(@@base_uri)
+    document = Nokogiri::HTML(response)
+    document.css('script, link').each { |node| node.remove }
+    document.css('body').text.squeeze(" \n")
   end
 end
