@@ -16,7 +16,8 @@ RSpec.describe PricingPolicy::FixedPrice do
                        .and_return("<a>#{readable_http_body}</a>")
   end
 
-  describe 'new' do
+  # class methods
+  describe '.new' do
     subject { pricing_policy }
 
     it 'should fetch the html body from reuters.com' do
@@ -32,6 +33,14 @@ RSpec.describe PricingPolicy::FixedPrice do
 
     it 'should return occurence of `a` divided by 100' do
       expect(subject.margin).to eq(23/100.00)
+    end
+  end
+
+  # instance variables
+  describe :total_price do
+    subject { pricing_policy.total_price }
+    it 'should calculate by base_price * margin' do
+      expect(subject).to eq(23)
     end
   end
 end
