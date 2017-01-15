@@ -1,25 +1,19 @@
-require 'net/http'
 require 'nokogiri'
 
-class PricingPolicy::FlexiblePrice
+class PricingPolicy::FlexiblePrice < PricingPolicy::Price
 
   # NOTE: allowing margin in attr_reader for testing
   attr_reader :margin, :total_price
 
-  @@base_uri = 'http://www.reuters.com/'
-
   def initialize(base_price)
+    @base_uri = 'http://www.reuters.com/'
     @margin = get_margin
     @total_price = @margin * base_price
   end
 
   private
-  # TODO: move fetch to a super class
-  def fetch
-    response = HTTParty.get(@@base_uri)
-    document = Nokogiri::HTML(response)
-    document.css('script, link').each { |node| node.remove }
-    document.css('body').text.squeeze(" \n")
+  def re_format(response)
+    collect_text(Nokogiri::HTML(response))
   end
 
   def get_margin
