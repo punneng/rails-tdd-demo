@@ -21,6 +21,7 @@ class PricingPolicy::FixedPrice
   end
 
   def get_margin
-    fetch
+    tokens = fetch.split
+    tokens.count('status') + tokens.count('Status')
   end
 end
