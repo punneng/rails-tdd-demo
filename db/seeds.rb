@@ -18,3 +18,19 @@ bmw_model = Model.create!(
   model_slug: 'serie_1',
   organization_id: organization.id
 )
+
+type_bmw_116i_type = ModelType.create!(
+  name: 'bmw 116i',
+  model_type_slug: 'bmw_116i',
+  model_type_code: '116i',
+  base_price: '100',
+  model: bmw_model
+)
+
+type_bmw_125i_type = ModelType.create!(
+  name: 'bmw 125i',
+  model_type_slug: 'bmw_125i',
+  model_type_code: '125i',
+  base_price: '200',
+  model: bmw_model
+)
