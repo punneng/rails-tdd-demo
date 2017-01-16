@@ -1,4 +1,5 @@
 class ModelTypesController < ApplicationController
+  before_action :authenticate_with_token!
   before_action :load_model
   def index
     render json: @model
