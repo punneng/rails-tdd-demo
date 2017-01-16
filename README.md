@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-NodeJS and MongoDB setup.
+Ruby and Rails setup.
 then run the commands below
 
 ``` bash
