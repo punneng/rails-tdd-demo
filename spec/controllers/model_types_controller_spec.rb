@@ -45,7 +45,7 @@ RSpec.describe ModelTypesController, type: :controller do
       end
     end
 
-    describe '#POST model_types_price' do
+    describe '#POST price' do
       let!(:model) { create(:serie_2) }
       let!(:model_types_1) { model.model_types[0] }
 
@@ -93,6 +93,31 @@ RSpec.describe ModelTypesController, type: :controller do
 
       it 'should render Not authenticated' do
         expect(JSON.parse(response.body)['errors']).to eq('Not authenticated')
+      end
+    end
+  end
+
+  context 'with Bad request' do
+    describe '#POST price' do
+      let!(:model) { create(:serie_2) }
+      let!(:model_types_1) { model.model_types[0] }
+
+      def post_price
+        request.headers['Authorization'] = 'Bearer my-fake-token'
+        post :price, { model_slug: 'serie_2', model_type_slug: 'bmw_216i', wrong_base_price: 100 }
+      end
+
+      before do
+        post_price
+      end
+
+      it 'should render as json' do
+        expect(response.header['Content-Type']).to include('application/json')
+      end
+
+      it 'should render bad request' do
+        expect(response).to have_http_status(400)
+        expect(JSON.parse(response.body)['errors']).to eq('Bad request')
       end
     end
   end
