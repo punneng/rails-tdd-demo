@@ -10,12 +10,12 @@ describe Authenticable, type: :controller do
 
   describe "#current_user" do
     before do
-      request.headers["Authorization"] = 'my-fake-token'
+      request.headers["Authorization"] = 'Bearer my-fake-token'
       allow(authentication).to receive(:request).and_return(request)
     end
 
     it "returns the user from the authorization header" do
-      expect(authentication.current_user).to eql'my-fake-token'
+      expect(authentication.current_user).to be true
     end
   end
 

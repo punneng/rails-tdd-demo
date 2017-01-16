@@ -9,7 +9,7 @@ RSpec.describe ModelTypesController, type: :controller do
     let!(:model_types_2) { model.model_types[1] }
 
     def get_model_types
-      request.headers['Authorization'] = 'Bearer my-secret-token'
+      request.headers['Authorization'] = 'Bearer my-fake-token'
       get :index, { model_slug: 'serie_1' }
     end
 
@@ -50,7 +50,7 @@ RSpec.describe ModelTypesController, type: :controller do
     let!(:model_types_1) { model.model_types[0] }
 
     def post_price
-      request.headers['Authorization'] = 'Bearer my-secret-token'
+      request.headers['Authorization'] = 'Bearer my-fake-token'
       post :price, { model_slug: 'serie_2', model_type_slug: 'bmw_216i', base_price: 100 }
     end
 
