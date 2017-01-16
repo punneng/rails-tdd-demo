@@ -7,7 +7,7 @@ class ModelTypesController < ApplicationController
 
   def price
     model_type = @model.model_types.find_by(model_type_slug: params[:model_type_slug])
-    model_type.base_price = params[:total_price].to_i
+    model_type.base_price = params[:base_price].to_i
 
     render json: model_type
   end
