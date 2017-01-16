@@ -12,6 +12,8 @@ class ModelType < ActiveRecord::Base
       PricingPolicy::FlexiblePrice.new(base_price).total_price
     when 'fixed'
       PricingPolicy::FixedPrice.new(base_price).total_price
+    when 'prestige'
+      PricingPolicy::PrestigePrice.new(base_price).total_price
     end
   end
 end

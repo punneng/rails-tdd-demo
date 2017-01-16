@@ -49,5 +49,22 @@ RSpec.describe ModelType, type: :model do
         subject
       end
     end
+
+    context 'prestige pricing' do
+      let!(:model) { create(:serie_3) }
+      let!(:model_type_1) { model.model_types[0] }
+
+      before do
+        allow(PricingPolicy::PrestigePrice).to receive(:new).and_return(pricing_policy)
+        allow(pricing_policy).to receive(:total_price).and_return(2)
+      end
+
+      subject { model_type_1.total_price }
+
+      it 'should calculate with pricing policy PrestigePrice' do
+        expect(PricingPolicy::PrestigePrice).to receive(:new)
+        subject
+      end
+    end
   end
 end
