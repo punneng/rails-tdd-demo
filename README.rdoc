@@ -1,28 +1,29 @@
-== README
+# Rails TDD demo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Build Setup
 
-Things you may want to cover:
+### Prerequisites
 
-* Ruby version
+NodeJS and MongoDB setup.
+then run the commands below
 
-* System dependencies
+``` bash
+# install dependencies
+$ bundler
 
-* Configuration
+# serve at localhost:3000
+$ bin/rails s
+```
+and navigate at localhost:8080
 
-* Database creation
+### Running the tests
 
-* Database initialization
+``` bash
+# run unit tests
+$ bundler exec rspec spec/
+```
 
-* How to run the test suite
+## Todo
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+- Mock external request with webmock
+- User session with refresh tokens
